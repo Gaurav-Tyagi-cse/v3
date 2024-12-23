@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Educate Html 5 Template">
+
+    <title>Digital Zone</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.png">
+
+    <!-- All CSS files -->
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/font-awesome.css">
+    <link rel="stylesheet" href="assets/vendor/slickslider/slick.css">
+    <link rel="stylesheet" href="assets/vendor/jquery-magnific-popup/jquery.magnific-popup.css">
+    <link rel="stylesheet" href="assets/vendor/animate/animate.min.css">
+    <link rel="stylesheet" href="assets/vendor/odometer/odometer.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+    <style>
+        .main-menu__login {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .cart-quantity {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .cart-container {
+            width: 90%;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f9f9f9;
+        }
+
+        .Cart-img {
+            width: 70px;
+            height: 70px;
+        }
+
+        /* .quantity {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quantity button {
+            width: 30px;
+            height: 30px;
+            border: none;
+            background-color: #ddd;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .quantity input {
+            width: 40px;
+            text-align: center;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+        } */
+
+        .cancel-btn {
+            /* Red background */
+            background-color: white;
+            color: red;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cancel-btn i {
+            font-size: 18px;
+            /* Icon size */
+        }
+
+        .cancel-btn:hover {
+            background-color: white;
+            /* Darker red on hover */
+        }
+
+
+        .cart-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .continue-shopping,
+        .checkout {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .continue-shopping {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .checkout {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .continue-shopping:hover,
+        .checkout:hover {
+            opacity: 0.9;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .cart-footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cart-actions button {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            tr {
+                margin-bottom: 15px;
+            }
+
+            td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 50%;
+                padding-left: 15px;
+                font-weight: bold;
+            }
+        }
+
+        /* .quantity-control {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        } */
+
+        /* .quantity-control button {
+            border: none;
+            background: #f0f0f0;
+            width: 30px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .quantity-control input {
+            width: 50px;
+            text-align: center;
+            border: none;
+            font-size: 16px;
+        }
+
+        .quantity-control button:hover {
+            background: #ddd;
+        } */
+
+        .total-price {
+            float: right;
+            padding-bottom: 10rem;
+        }
+
+
+
+        .quantity {
+            display: flex;
+            width: 103px;
+            border: 2px solid #3498db;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .quantity {
+            margin-left: 115px;
+        }
+
+        .quantity {
+            margin-left: 115px;
+        }
+
+        @media (max-width: 1200px) {
+            .quantity {
+                margin-left: 90px;
+                /* Adjust margin for large screens */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .quantity {
+                margin-left: 60px;
+                /* Adjust margin for medium screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .quantity {
+                margin-left: 30px;
+                /* Adjust margin for small screens */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .quantity {
+                margin-left: 15px;
+                /* Adjust margin for extra small screens */
+            }
+        }
+
+        .quantity button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            width: 30px;
+            height: auto;
+            text-align: center;
+            transition: background-color 0.2s;
+            justify-content: center;
+        }
+
+        .quantity button:hover {
+            background-color: #2980b9;
+        }
+
+        .input-box {
+            width: 40px;
+            text-align: center;
+            border: none;
+            padding: 8px 10px;
+            font-size: 16px;
+            outline: none;
+            justify-content: center;
+        }
+
+        /* Hide the number input spin buttons */
+        .input-box::-webkit-inner-spin-button,
+        .input-box::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .cart-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .cart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .continue-shopping,
+        .checkout {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Default styling for larger screens */
+        .cart:nth-child(2) {
+            margin: -112px;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 1200px) {
+            .cart:nth-child(2) {
+                margin: -90px;
+                /* Adjust margin for large screens */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .cart:nth-child(2) {
+                margin: -70px;
+                /* Adjust margin for medium screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cart-footer {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cart:nth-child(2) {
+                margin: 0;
+                /* Remove margin for small screens */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .cart-footer {
+                padding: 15px;
+            }
+
+            .continue-shopping,
+            .checkout {
+                font-size: 14px;
+                /* Smaller button text on smaller screens */
+                margin: 10px;
+                margin-left: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body class="custom-cursor locked">
+
+    <!-- cursor style  -->
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+
+    <!-- Preloader-->
+    <div id="preloader">
+        <div class="book">
+            <div class="inner">
+                <div class="left"></div>
+                <div class="middle"></div>
+                <div class="right"></div>
+            </div>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Wrapper Start -->
+    <div id="main-wrapper" class="main-wrapper">
+        <!-- Header Area start -->
+        <header>
+            <nav class="main-menu">
+                <div class="container">
+                    <div class="main-menu__block">
+                        <div class="main-menu__left">
+
+                            <div class="main-menu__logo">
+                                <a href="index.html">
+                                    <img src="img/logo.png" alt="Educate" style="width: 100px;">
+                                </a>
+                            </div>
+
+                            <div class="main-menu__nav">
+                                <ul class="main-menu__list">
+                                    <!-- <li class="dropdown">
+                            <a href="javascript:void(0);" class="active">Home</a>
+                            <ul>
+                            
+                            </ul> -->
+                                    <li><a href="index.html">Home</a></li>
+                                    </li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li class="dropdown">
+                                        <a href="javascript:void(0);">Course</a>
+                                        <ul>
+                                            <li><a href="">Social Media Marketing</a></li>
+                                            <li><a href="">Freelance Make Money</a></li>
+                                            <li><a href="">Stock Market</a></li>
+                                            <li><a href="">Data Science & Analysis</a></li>
+                                            <li><a href="">Instagram Growth Mastery</a></li>
+                                            <li><a href="">Photoshop</a></li>
+                                            <li><a href="">Website Development</a></li>
+                                            <li><a href="">Graphics Designing</a></li>
+                                            <li><a href="course-detail.html">Course Detail</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="blog-grid.html">Blog</a></li>
+
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="main-menu__right">
+                            <a href="#" class="main-menu__search search-toggler">
+                                <i class="fal fa-search"></i>
+                            </a>
+                            <a href="cart.html" class="main-menu__login">
+                                <i class="fal fa-cart-plus"></i>
+                                <span class="cart-quantity">0</span>
+                            </a>
+                            <a href="contact.html" class="educate-btn sm d-xl-flex d-none"><span
+                                    class="educate-btn__curve"></span>Enroll Now</a>
+                            <a href="#" class="main-menu__toggler mobile-nav__toggler">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- Sticky Header -->
+        <div class="stricky-header stricked-menu main-menu">
+            <div class="sticky-header__content"></div>
+        </div>
+        <!-- Header Area End  -->
+
+        <!-- Page Title Banner Start -->
+        <section class="page_title_banner">
+            <div class="container">
+                <div class="content">
+                    <div class="title">
+                        <h1>Cart</h1>
+                        <img src="assets/media/shapes/tag-2.png" alt="" class="tag">
+                    </div>
+                    <div class="educate-tilt"
+                        data-tilt-options='{ "glare": false, "maxGlare": 0, "maxTilt": 2, "speed": 700, "scale": 1 }'>
+                        <img src="assets/media/resources/page_title.png" alt="" class="main_img">
+                    </div>
+                    <img src="assets/media/shapes/circle-lines-2.png" alt="" class="circle_vector">
+                </div>
+            </div>
+        </section>
+        <!-- Page Title Banner End -->
+
+
+
+        <div class="cart-container">
+            <h2>My Cart</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><img src="img/photoshop.jpeg" alt="Cloth Hanger" class="Cart-img"></td>
+                        <td>Photoshop</td>
+                        <td>₹600</td>
+                        <td>
+                            <div class="quantity">
+                                <button class="minus" aria-label="Decrease">&minus;</button>
+                                <input type="number" class="input-box" value="1" min="1" max="20" readonly>
+                                <button class="plus" aria-label="Increase">&plus;</button>
+                            </div>
+                        </td>
+                        <td>₹600</td>
+                        <td><button class="cancel-btn">
+                                <i class="fas fa-trash"></i>
+                            </button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <section>
+
+                <div class="total-price">
+                    <strong>Total Price : </strong> ₹<span id="grand-total">1600</span>
+                </div>
+            </section>
+            <br>
+            <div class="cart-footer">
+                <div class="cart">
+                    <button class="continue-shopping">Continue Shopping</button>
+                </div>
+
+                <div class="cart">
+                    <button class="checkout">Checkout</button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Footer Area Start -->
+        <footer>
+            <div class="footer_main py-60">
+                <img src="assets/media/shapes/vector-7.png" alt="" class="vector_shape">
+                <img src="assets/media/shapes/dots-1.png" alt="" class="dots">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-3 ">
+                            <div class="footer_widget">
+                                <a href="index.html" class="mb-8"><img src="img/logo.png" alt=""
+                                        style="width: 150px;"></a>
+                                <!-- <p class="description_text">Lorem ipsum dolor sit amet consectetur. Non convallis sed id
+                                    aliquam tempus.
+                                    Volutpat tortor tincidunt egestas sit risus donec.</p> -->
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="footer_widget">
+                                <h5 class="medium-black mb-16">Quick Links</h5>
+                                <ul class="unstyled list">
+                                    <li><a href=""><i class="fad fa-chevron-right"></i>Courses</a></li>
+                                    <li><a href=""><i class="fad fa-chevron-right"></i>Join a Career</a></li>
+                                    <li><a href=""><i class="fad fa-chevron-right"></i>Upcoming Events</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="footer_widget">
+                                <h5 class="medium-black mb-16">Explore</h5>
+                                <ul class="unstyled list">
+                                    <li><a href="about.html"><i class="fad fa-chevron-right"></i>About Us</a></li>
+                                    <li><a href="gallery.html"><i class="fad fa-chevron-right"></i>Gallery</a></li>
+                                    <li><a href="team-detail.html"><i class="fad fa-chevron-right"></i>Teacher’s
+                                            Detail</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-sm-6">
+                            <div class="footer_widget">
+                                <h5 class="medium-black mb-16">Information</h5>
+                                <ul class="unstyled list">
+                                    <li><a href="login.html"><i class="fad fa-chevron-right"></i>Login</a></li>
+                                    <li><a href="register.html"><i class="fad fa-chevron-right"></i>Register</a></li>
+                                    <li><a href="contact.html"><i class="fad fa-chevron-right"></i>Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="footer_widget">
+                                <h5 class="medium-black mb-16">Contact Us</h5>
+                                <ul class="unstyled list">
+                                    <li class="mb-16"><i class="fal fa-map-marker-alt"></i>631 Elgin ST. Celina, State
+                                        111111</li>
+                                    <li class="mb-16"><a href="mailto:info@example.com"><i
+                                                class="fal fa-envelope"></i>email@example.com</a></li>
+                                    <li><a href="tel:123456789"><i class="fal fa-phone-alt"></i>+1 234 567 890</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-row">
+                        <ul class="unstyled social_icons_list">
+                            <li>
+                                <a href="">
+                                    <img src="assets/media/icons/brands/Instagram.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="assets/media/icons/brands/Facebook.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="assets/media/icons/brands/Twitter.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="assets/media/icons/brands/Linkedin.png" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="newsletter_block">
+                            <h5>Newsletter</h5>
+                            <form class="newsletter">
+                                <input type="email" class="form-control" required placeholder="Your email">
+                                <button type="submit" class="educate-btn sm"><span
+                                        class="educate-btn__curve"></span>Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright_row">
+                <p>©2024 Digital Zone All Rights Reserved||Developed & Designed By <a href="https://bhoomitechzone.in/">
+                        BTPL</a></p>
+            </div>
+        </footer>
+        <!-- Footer Area End -->
+
+    </div>
+
+    <!-- Mobile Menu Start -->
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img src="assets/media/logo-light.png" alt="educate"></a>
+            </div>
+            <div class="mobile-nav__container"></div>
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:example@company.com">example@company.com</a>
+                </li>
+                <li>
+                    <i class="fa fa-phone-alt"></i>
+                    <a href="tel:+12345678">+123 (4567) -890</a>
+                </li>
+            </ul>
+            <div class="mobile-nav__social">
+                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.pinterest.com/"><i class="fab fa-pinterest-p"></i></a>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu End -->
+
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <div class="search-popup__content">
+            <form role="search" method="get" class="search-popup__form" action="index.html">
+                <input type="text" id="search" placeholder="Search Here...">
+                <button type="submit"><i class="fal fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <!-- search-popup -->
+
+    <!-- back-to-top-start -->
+    <a href="#" class="scroll-top">
+        <svg class="scroll-top__circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </a>
+    <!-- back-to-top-end -->
+
+    <!-- Jquery Js -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery/jquery-3.6.3.min.js"></script>
+    <script src="assets/vendor/jquery-appear/jquery-appear.js"></script>
+    <script src="assets/vendor/jquery-validator/jquery-validator.js"></script>
+    <script src="assets/vendor/odometer/odometer.min.js"></script>
+    <script src="assets/vendor/countdown/jquery.countdown.min.js"></script>
+    <script src="assets/vendor/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="assets/vendor/slickslider/slick.min.js"></script>
+    <script src="assets/vendor/tilt/tilt.jquery.js"></script>
+    <script src="assets/vendor/wow/wow.js"></script>
+
+    <!-- Site Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script>
+        (function () {
+            const quantityContainer = document.querySelector(".quantity");
+            const minusBtn = quantityContainer.querySelector(".minus");
+            const plusBtn = quantityContainer.querySelector(".plus");
+            const inputBox = quantityContainer.querySelector(".input-box");
+
+            updateButtonStates();
+
+            quantityContainer.addEventListener("click", handleButtonClick);
+            inputBox.addEventListener("input", handleQuantityChange);
+
+            function updateButtonStates() {
+                const value = parseInt(inputBox.value);
+                minusBtn.disabled = value <= 1;
+                plusBtn.disabled = value >= parseInt(inputBox.max);
+            }
+
+            function handleButtonClick(event) {
+                if (event.target.classList.contains("minus")) {
+                    decreaseValue();
+                } else if (event.target.classList.contains("plus")) {
+                    increaseValue();
+                }
+            }
+
+            function decreaseValue() {
+                let value = parseInt(inputBox.value);
+                value = isNaN(value) ? 1 : Math.max(value - 1, 1);
+                inputBox.value = value;
+                updateButtonStates();
+                handleQuantityChange();
+            }
+
+            function increaseValue() {
+                let value = parseInt(inputBox.value);
+                value = isNaN(value) ? 1 : Math.min(value + 1, parseInt(inputBox.max));
+                inputBox.value = value;
+                updateButtonStates();
+                handleQuantityChange();
+            }
+
+            function handleQuantityChange() {
+                let value = parseInt(inputBox.value);
+                value = isNaN(value) ? 1 : value;
+
+                // Execute your code here based on the updated quantity value
+                console.log("Quantity changed:", value);
+            }
+        })();
+
+    </script>
+
+</body>
+
+</html>
